@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mission: Factor X - Multiplication Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0c10;
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: gold;
+    }
+    #game {
+      margin-top: 30px;
+    }
+    .question {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #1f2833;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #45a29e;
+    }
+    #feedback {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+    #streak {
+      margin-top: 20px;
+      font-size: 20px;
+      color: silver;
+    }
+    #playAgain {
+      margin-top: 30px;
+      display: none;
+      padding: 12px 25px;
+      font-size: 18px;
+      background: #66fcf1;
+      color: black;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 Mission: Factor X 🚀</h1>
+  <p>Solve the multiplication problem. Can you beat your highest streak?</p>
+
+  <div id="game">
+    <div id="question" class="question"></div>
+    <div class="options" id="options"></div>
+    <div id="feedback"></div>
+    <div id="streak">Current Streak: 0 | Highest Streak: 0</div>
+    <button id="playAgain" onclick="restartGame()">Play Again</button>
+  </div>
+
+  <script>
+    let currentAnswer;
+    let streak = 0;
+    let highestStreak = 0;
+
+    function newQuestion() {
+      document.getElementById("feedback").textContent = "";
+      document.getElementById("playAgain").style.display = "none";
+
+      let num1 = Math.floor(Math.random() * 12) + 1;
+      let num2 = Math.floor(Math.random() * 12) + 1;
+      currentAnswer = num1 * num2;
+
+      document.getElementById("question").textContent = `${num1} × ${num2} = ?`;
+
+      let options = new Set();
+      options.add(currentAnswer);
+      while (options.size < 4) {
+        options.add(Math.floor(Math.random() * 144) + 1);
+      }
+
+      let optionButtons = "";
+      Array.from(options)
+        .sort(() => Math.random() - 0.5)
+        .forEach(option => {
+          optionButtons += `<button onclick="checkAnswer(${option})">${option}</button>`;
+        });
+      document.getElementById("options").innerHTML = optionButtons;
+    }
+
+    function checkAnswer(selected) {
+      if (selected === currentAnswer) {
+        document.getElementById("feedback").textContent = "✅ Correct!";
+        streak++;
+        if (streak > highestStreak) {
+          highestStreak = streak;
+        }
+        setTimeout(newQuestion, 1000);
+      } else {
+        document.getElementById("feedback").textContent = "❌ Incorrect. Try again!";
+        streak = 0;
+        document.getElementById("playAgain").style.display = "inline-block";
+      }
+      document.getElementById("streak").textContent =
+        `Current Streak: ${streak} | Highest Streak: ${highestStreak}`;
+    }
+
+    function restartGame() {
+      streak = 0;
+      document.getElementById("streak").textContent =
+        `Current Streak: ${streak} | Highest Streak: ${highestStreak}`;
+      newQuestion();
+    }
+
+    newQuestion();
+  </script>
+</body>
+</html>
