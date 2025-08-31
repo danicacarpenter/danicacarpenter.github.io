@@ -77,7 +77,7 @@
     }
 
     function reportProgress(){
-      const formBase = "https://docs.google.com/forms/d/e/1FAIpQLScicpC0zHKh9vRyppFmUcKjpsh0f3zBDpJAW1b3QCG55vLbFQ/viewform?usp=pp_url";
+      const formBase = "https://docs.google.com/forms/d/e/1FAIpQLScicpC0zHKh9vRyppFmUcKjpsh0f3zBDpJAW1b3QCG55vLbFQ/viewform?usp=dialog";
       const url = `${formBase}&entry.6202273=${encodeURIComponent(student)}&entry.1268961501=${best}`;
       window.open(url, "_blank");
     }
