@@ -13,3 +13,14 @@ function generateMultiplication() {
 
   return { text: `${a} × ${b} = ?`, answer, choices };
 }
+
+function generateDistrib1() {
+  const coeff = Math.floor(Math.random() * 9) + 2; // 2–10
+  const a = Math.floor(Math.random() * 9) + 1;
+  const b = Math.floor(Math.random() * 9) + 1;
+
+  const text = `${coeff}(${a}x + ${b})`;
+  const answer = `${coeff * a}x+${coeff * b}`;
+
+  return { text, answer };
+}
