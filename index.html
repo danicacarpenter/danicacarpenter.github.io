@@ -1,86 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Mission: Factor X</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: black; color: white; text-align: center; }
-    #gameBox { margin-top: 50px; }
-    button { padding: 10px 20px; font-size: 16px; background: gold; color: black; border: none; cursor: pointer; margin: 5px; }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>🚀 Mission: Factor X</h1>
-  <div id="gameBox">
-    <div id="question"></div>
-    <div id="options"></div>
-    <div>Streak: <span id="streak">0</span> | Best: <span id="bestStreak">0</span></div>
-    <div id="badge">Level: <span id="level">Multiplication Facts</span></div>
+  <div id="app">
+    <!-- Login screen will load here -->
   </div>
-  
-  <script>
-    // Student name prompt
-    let student = sessionStorage.getItem("mf_student") || prompt("Enter your name for tracking:");
-    if (student) sessionStorage.setItem("mf_student", student);
 
-    let streak = 0, best = 0, stage = 0; // 0: mult, 1: dist, 2: binomial
-    const levels = ["Multiplication Facts", "Distribution", "Binomial Expansion"];
-
-    updateUI(); nextQ();
-
-    function nextQ(){
-      document.getElementById("question").textContent = generateQuestion();
-      document.getElementById("options").innerHTML = generateOptionsHTML();
-    }
-
-    function generateQuestion(){
-      if (stage==0){
-        const a=Math.ceil(Math.random()*12), b=Math.ceil(Math.random()*12);
-        correct = a*b;
-        return `${a} × ${b} = ?`;
-      }
-      // Extend with other stage logic here...
-    }
-
-    function generateOptionsHTML(){
-      const opts = [correct];
-      while(opts.length<4){
-        const rand = Math.ceil(Math.random()*144);
-        if(!opts.includes(rand)) opts.push(rand);
-      }
-      return opts.sort(()=>Math.random()-0.5)
-        .map(o => `<button onclick="answer(${o})">${o}</button>`).join("");
-    }
-
-    function answer(val){
-      if (val===correct){
-        streak++;
-        if(streak>best) best=streak;
-        if (streak===50){
-          stage++;
-          streak=0;
-          alert(`Level Up to "${levels[stage]}"!`);
-          reportProgress();
-          updateLevel();
-        }
-      } else streak=0;
-      updateUI(); nextQ();
-    }
-
-    function updateLevel(){
-      document.getElementById("level").textContent = levels[stage];
-    }
-
-    function updateUI(){
-      document.getElementById("streak").textContent = streak;
-      document.getElementById("bestStreak").textContent = best;
-    }
-
-    function reportProgress(){
-      const formBase = "https://docs.google.com/forms/d/e/1FAIpQLScicpC0zHKh9vRyppFmUcKjpsh0f3zBDpJAW1b3QCG55vLbFQ/viewform?usp=dialog";
-      const url = `${formBase}&entry.6202273=${encodeURIComponent(student)}&entry.1268961501=${best}`;
-      window.open(url, "_blank");
-    }
-  </script>
+  <!-- Global scripts -->
+  <script src="script.js"></script>
 </body>
 </html>
