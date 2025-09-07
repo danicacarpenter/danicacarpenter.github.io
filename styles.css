@@ -1,0 +1,19 @@
+body {
+  font-family: Arial, sans-serif;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+button {
+  background: gold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#app {
+  margin-top: 50px;
+}
