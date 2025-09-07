@@ -24,3 +24,25 @@ function generateDistrib1() {
 
   return { text, answer };
 }
+// --- Phase 4: Binomial × Binomial ---
+function generateDistrib2() {
+  // Pick random coefficients (avoid zero to keep it meaningful)
+  const a = Math.floor(Math.random() * 9) + 1;
+  const b = Math.floor(Math.random() * 9) + 1;
+  const c = Math.floor(Math.random() * 9) + 1;
+  const d = Math.floor(Math.random() * 9) + 1;
+
+  // Problem text: (ax + b)(cx + d)
+  const text = `(${a}x + ${b})(${c}x + ${d})`;
+
+  // Correct expansion:
+  // (ax)(cx) + (ax)(d) + (b)(cx) + (b)(d)
+  const coeffX2 = a * c;
+  const coeffX = a * d + b * c;
+  const constant = b * d;
+
+  // Final simplified answer (standard form: ax²+bx+c)
+  const answer = `${coeffX2}x^2+${coeffX}x+${constant}`;
+
+  return { text, answer };
+}
