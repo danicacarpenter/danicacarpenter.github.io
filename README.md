@@ -21,3 +21,27 @@ It’s space-themed, fun for students, and tracks progress through Google Forms 
 ---
 
 ## 📂 File Structure
+
+---
+
+## 🚀 How to Run
+1. Go to: [https://danicacarpenter.github.io/](https://danicacarpenter.github.io/)  
+2. Enter your class code and name.  
+3. Start your mission! 🛰️
+
+---
+
+## 👩‍🏫 Teacher Dashboard
+- All progress data is logged to a Google Form → linked Google Sheet.  
+- Each submission includes:
+  - Class code
+  - Student name
+  - Phase completed
+  - Mastery status
+
+---
+
+## 💡 Future Ideas
+- Leaderboard system  
+- Randomized challenge phases  
+- Export progress to CSV  
